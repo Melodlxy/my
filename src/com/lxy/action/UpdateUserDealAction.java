@@ -1,9 +1,15 @@
 package com.lxy.action;
 
+import javax.annotation.Resource;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
 import com.lxy.model.User;
 import com.lxy.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
-
+@Controller
+@Scope("prototype")
 public class UpdateUserDealAction extends ActionSupport{
 	
 	private String tip;
@@ -29,12 +35,12 @@ public class UpdateUserDealAction extends ActionSupport{
 	public UserService getUs() {
 		return us;
 	}
-
+	@Resource(name="userService")
 	public void setUs(UserService us) {
 		this.us = us;
 	}
 
-	public String updateUser(User user){
+	public String updateUser(){
 		us.update(user);
 		return SUCCESS;
 	}

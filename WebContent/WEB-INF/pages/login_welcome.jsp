@@ -10,14 +10,13 @@
 </head>
 <body>
 <s:debug></s:debug>
-${requestScope.tip}.您可以:<br>
-${requestScope.user}
+${requestScope.tip}.您可以:<br/>
+requestScope.user=${requestScope.user}<br/>
+sessionScope.user=${sessionScope.user}<br/>
 
-<a href="updateUserLinkAction?username=${requestScope.user.username}">sss	</a>
 <form action="updateUserLinkAction" >
-<input type="hidden" name="user.username" value="${requestScope.user.username}" />
+<input type="hidden" name="id" value="${sessionScope.user.id}" />
 <input type="submit" value="修改资料" />
-<!-- <input type="button" value="修改资料"> --><br/>
 </form>
 </body>
 </html>

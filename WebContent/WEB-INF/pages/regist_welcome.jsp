@@ -8,7 +8,7 @@
 </head>
 <body>
 ${requestScope.tip}.您可以:<br>
-<form action="updateUserDealAction">
+<form action="updateUserLinkAction">
 <input type="submit" value="修改资料"/>
 <!-- <input type="button" value="修改资料"> -->
 </form>

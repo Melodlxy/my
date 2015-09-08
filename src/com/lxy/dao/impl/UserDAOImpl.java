@@ -1,39 +1,50 @@
 package com.lxy.dao.impl;
 
 import java.util.List;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+
+import javax.annotation.Resource;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import com.lxy.dao.UserDAO;
 import com.lxy.model.User;
+@Repository(value="userDAO")
+public class UserDAOImpl implements UserDAO{
 
-public class UserDAOImpl extends HibernateDaoSupport implements UserDAO{
-
-	@Override
-	public void add(User user) {
-		getHibernateTemplate().save(user);
-//		Object o = getHibernateTemplate().getSessionFactory().getCurrentSession().get(User.class, user.getUsername());
-//		Session sess = getHibernateTemplate().getSessionFactory().getCurrentSession();
-//		Transaction tx = sess.beginTransaction();
-//		sess.save(user);
-//		tx.commit();
-//		sess.close();
-//		return true;
+	private SessionFactory sessionFactory;
+	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	@Resource(name="sessionFactory")
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
-	public boolean valid(User user) {
-		List<User> l = (List<User>) getHibernateTemplate().find(" from User  where username=? and password=? ", new String[]{user.getUsername(),user.getPassword()});
-		if(l.size() == 0){
-			return false;
-		}
-		return true;
+	public void save(User user) {
+		Session session = sessionFactory.getCurrentSession();
+		session.save(user);
+		session.flush();
 	}
 	
-	public User get(User user){
-		return getHibernateTemplate().get(User.class, user.getUsername());
+	public List<User> getByNameAndPass(User user){
+		Session session = sessionFactory.getCurrentSession();
+		return (List<User>)session.createCriteria(User.class)
+				.add(Restrictions.eq("username", user.getUsername())).add(Restrictions.eq("password", user.getPassword())).list();
+	}
+	
+	public User getById(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		return (User)session.get(User.class, id);
+	}
+	@Override
+	public List<User> getByName(String username) {
+		Session session = sessionFactory.getCurrentSession();
+		return (List<User>)session.createCriteria(User.class)
+				.add(Restrictions.eq("username", username)).list();
 	}
 
-	public void save(User user){
-		getHibernateTemplate().save(user);
-	}
 }

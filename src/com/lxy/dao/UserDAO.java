@@ -1,10 +1,11 @@
 package com.lxy.dao;
 
+import java.util.List;
 import com.lxy.model.User;
 
 public interface UserDAO {	
-	boolean valid(User user);
-	void add(User user);
-	User get(User user);
+	List<User> getByNameAndPass(User user);
+	List<User> getByName(String username);
+	User getById(int id);
 	void save(User user);
 }

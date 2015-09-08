@@ -1,9 +1,16 @@
 package com.lxy.service.impl;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.lxy.dao.UserDAO;
 import com.lxy.model.User;
 import com.lxy.service.UserService;
-
+import com.opensymphony.xwork2.ActionContext;
+@Service(value="userService")
 public class UserServiceImpl implements UserService {
 
 	private UserDAO userDAO;
@@ -11,15 +18,16 @@ public class UserServiceImpl implements UserService {
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
-
+	@Resource(name="userDAO")
 	public void setUserDAO(UserDAO userDAO) {
 		this.userDAO = userDAO;
 	}
 
 	@Override
 	public boolean vaild(User user) {
-		boolean result = userDAO.valid(user);
-		if(result){
+		List<User> users = userDAO.getByNameAndPass(user);
+		if(users.size()>0){
+			ActionContext.getContext().getSession().put("user", users.get(0));
 			return true;
 		}
 		return false;
@@ -27,22 +35,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean regist(User user) {
-		User u = userDAO.get(user);
-		if(u == null){
-			userDAO.add(user);
+		List<User> users = userDAO.getByName(user.getUsername());
+		if(users.size()>0){
+			return false;
+		}else{
+			userDAO.save(user);
+			ActionContext.getContext().getSession().put("user", users.get(0));
 			return true;
 		}
-		return false;
 	}
 
 	@Override
 	public void update(User user) {
 		userDAO.save(user);
 	}
-
+	
 	@Override
-	public void add(User user) {
-		
+	public User getById(int id) {
+		return userDAO.getById(id);
 	}
-
+	
 }

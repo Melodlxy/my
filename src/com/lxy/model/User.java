@@ -2,6 +2,8 @@ package com.lxy.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -15,12 +17,21 @@ public class User {
 	private String password1;
 	private String name;
 	private String interest;
+	private int id;
 	private int age;
 	private int sex;
 	private int marrage;
 
 	@Id
-	@Column(name="username",unique=true,nullable=false)
+	@Column(name="id",unique=true,nullable=false)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	@Column(name="username")
 	public String getUsername() {
 		return username;
 	}
@@ -41,28 +52,28 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	@Column(name="interest")
+	@Column(name="interest",length=400)
 	public String getInterest() {
 		return interest;
 	}
 	public void setInterest(String interest) {
 		this.interest = interest;
 	}
-	@Column(name="age")
+	@Column(name="age",length=3)
 	public int getAge() {
 		return age;
 	}
 	public void setAge(int age) {
 		this.age = age;
 	}
-	@Column(name="sex")
+	@Column(name="sex",length=2)
 	public int getSex() {
 		return sex;
 	}
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
-	@Column(name="marrage")
+	@Column(name="marrage",length=2)
 	public int getMarrage() {
 		return marrage;
 	}
