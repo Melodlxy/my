@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 指定全局国际化资源文件 -->
+	<constant name="struts.custom.i18n.resources" value="mess"></constant>
+	<!-- 指定国际化编码所使用的字符集 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<!-- 打开动态调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" /> 
+	<!-- 设置允许OGNL访问静态成员 -->
+	<constant name="struts.ognl.allowStaticMethodAcess" value="true"></constant>
+	<!-- 设置s:标签属性为simple -->
+<!-- 	<constant name="struts.ui.theme" value="simple" /> -->
+	
+	<!-- 所有的Aciton定义都在package下 -->
+	<package name="lxy"  extends="struts-default" >
+		<!-- 配置默认action -->
+		<default-action-ref name="defaultAction"/>
+		<!-- 默认action -->
+		<action name="defaultAction" class="com.lxy.action.DefaultAction">
+			<result name="success">/pages/default.jsp</result>
+		</action>
+		
+		<action name="*DealAction" class="{1}DealAction" method="{1}">
+<!-- 			<exception-mapping result="myException" exception="com.lxy.exception.MyException"></exception-mapping> -->
+			<result name="input">/WEB-INF/pages/{1}.jsp</result>
+			<result name="success">/WEB-INF/pages/{1}_welcome.jsp</result>
+			<result name="error">/WEB-INF/pages/error.jsp</result>
+			
+<!-- 			<result name="input">/WEB-INF/pages/login.jsp</result> -->
+<!-- 			<result name="success">/WEB-INF/pages/welcome.jsp</result> -->
+<!-- 			<result name="error">/WEB-INF/pages/error.jsp</result> -->
+<!-- 			<result name="myException">/exception.jsp</result> -->
+		</action>
+		<action name="*LinkAction" >
+			<result>/WEB-INF/pages/{1}.jsp</result>
+		</action>
+	</package>
+</struts>
