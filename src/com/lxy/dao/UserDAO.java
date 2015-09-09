@@ -8,4 +8,5 @@ public interface UserDAO {
 	List<User> getByName(String username);
 	User getById(int id);
 	void save(User user);
+	void update(User user);
 }

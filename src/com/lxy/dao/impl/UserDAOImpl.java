@@ -46,5 +46,11 @@ public class UserDAOImpl implements UserDAO{
 		return (List<User>)session.createCriteria(User.class)
 				.add(Restrictions.eq("username", username)).list();
 	}
+	@Override
+	public void update(User user) {
+		Session session = sessionFactory.getCurrentSession();
+		session.update(user);
+		session.flush();
+	}
 
 }

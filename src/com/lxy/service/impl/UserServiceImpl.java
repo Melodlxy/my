@@ -40,14 +40,14 @@ public class UserServiceImpl implements UserService {
 			return false;
 		}else{
 			userDAO.save(user);
-			ActionContext.getContext().getSession().put("user", users.get(0));
+//			ActionContext.getContext().getSession().put("user", users.get(0));
 			return true;
 		}
 	}
 
 	@Override
 	public void update(User user) {
-		userDAO.save(user);
+		userDAO.update(user);
 	}
 	
 	@Override

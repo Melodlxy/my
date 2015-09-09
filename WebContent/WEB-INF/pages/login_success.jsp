@@ -18,5 +18,9 @@ sessionScope.user=${sessionScope.user}<br/>
 <input type="hidden" name="id" value="${sessionScope.user.id}" />
 <input type="submit" value="修改资料" />
 </form>
+<form action="leaveMessageLinkAction" >
+<input type="hidden" name="id" value="${sessionScope.user.id}" />
+<input type="submit" value="给作者留言" />
+</form>
 </body>
 </html>
