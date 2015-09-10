@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.lxy.model.Message"%>
+<%@page import="java.util.List"%>
 <%@page import="com.lxy.model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,8 +14,8 @@
 <body>
 <s:debug></s:debug>
 ${requestScope.tip}.您可以:<br/>
-requestScope.user=${requestScope.user}<br/>
-sessionScope.user=${sessionScope.user}<br/>
+<%-- requestScope.user=${requestScope.user}<br/> --%>
+<%-- sessionScope.user=${sessionScope.user}<br/> --%>
 
 <form action="updateUserLinkAction" >
 <input type="hidden" name="id" value="${sessionScope.user.id}" />
@@ -22,5 +25,28 @@ sessionScope.user=${sessionScope.user}<br/>
 <input type="hidden" name="id" value="${sessionScope.user.id}" />
 <input type="submit" value="给作者留言" />
 </form>
+您往次的留言：<br/>
+<table border="1">
+	<tr>
+		<td>留言内容</td>
+		<td>留言时间</td>
+		<td>是否隐藏</td>
+		<td></td>
+	</tr>
+	<%
+		List messages = (List)session.getAttribute("messages");
+		for(int i=0;i<messages.size();i++){
+			Message m = (Message)messages.get(i);
+	%>
+	<tr>
+		<td><%=m.getContent() %></td>
+		<td><%=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(m.getInputdate()) %></td>
+		<td><%=m.getStatus() %></td>
+		<td><a href="deleteMessageDealAction?id=<%=m.getId() %>">删除</a></td>
+	</tr>
+	<%
+		}
+	%>
+</table>
 </body>
 </html>
