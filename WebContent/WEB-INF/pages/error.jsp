@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -13,14 +14,12 @@
 <title>主页</title>
 
 <!-- Bootstrap core CSS -->
-<link href="resources/bootstrap.min.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<script src="resources/js/jquery-2.1.4.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 
 <!-- Custom styles for this template -->
-<!-- <link href="../../resources/custom/main/main1.css" rel="stylesheet"> -->
-
-<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<!--     <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+<link href="resources/css/main/main1.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -36,21 +35,22 @@
 				<button type="button" class="navbar-toggle collapsed"
 					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
 					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> 
-					<span	class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Project name</a>
+				<a class="navbar-brand active" href="#">主页</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">主页</a></li>
-					<li><a class="xx" href="#about">日记</a></li>
-					<li><a href="#contact">Contact</a></li>
+					<li><a href="#main">功能1</a></li>
+					<li><a href="#about">功能2</a></li>
+					<li><a href="#contact">功能3</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Dropdown <span class="caret"></span></a>
+						aria-expanded="false">Dropdown <b class="caret"></b>
+					</a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Action</a></li>
 							<li><a href="#">Another action</a></li>
@@ -59,20 +59,43 @@
 							<li class="dropdown-header">Nav header</li>
 							<li><a href="#">Separated link</a></li>
 							<li><a href="#">One more separated link</a></li>
-						</ul>
-					</li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../navbar/">Default</a></li>
-					<li><a href="../navbar-static-top/">Static top</a></li>
-					<li class="active"><a href="./">Fixed top <span
-							class="sr-only">(current)</span></a></li>
+						</ul></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-
+<!-- 	<div class="jumbotron"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<h1><br><br><br>Sign</h1> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	<section>
+		<div class="container">
+			<div class="row">
+				<main class="col-md-8">
+					<artical >
+						<div class="post-head">
+							<div class="post-title">
+								<h1>title</h1>
+							</div>
+							<div class="post-meta">
+								<span class="post-meta">author</span><time>2011/01/01</time>
+							</div>
+						</div>
+						<div>content</div>
+						<div>permalink</div>
+						<footer>tag</footer>
+					</artical>
+				</main>
+				<aside class="col-md-4">
+					<div class="widgt">
+						<h4>bbb</h4>
+					</div>
+				</aside>
+			</div>
+		</div>
+	</section>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<!--     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
 </body>

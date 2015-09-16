@@ -1,0 +1,17 @@
+body {
+/*     padding-top: 60px; */
+/*     font-family: 'Open Sans', Lato, sans-serif; */
+/*     font-size: 16px; */
+/*     line-height: 1.6em; */
+    background: #eee;
+    padding-top: 60px;
+}
+.navbar-default{
+	background-color: #fff;
+}
+.post-head{
+  text-align: center;
+}
+/* .post-title{ */
+/* 	size: 2.5em; */
+/* } */
