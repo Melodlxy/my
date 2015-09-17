@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -11,7 +11,7 @@
 <meta name="author" content="">
 <!-- <link rel="icon" href="../../favicon.ico"> -->
 
-<title>主页</title>
+<title>发博文</title>
 
 <!-- Bootstrap core CSS -->
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
@@ -20,6 +20,7 @@
 
 <!-- Custom styles for this template -->
 <link href="resources/css/main/main1.css" rel="stylesheet">
+<link href="resources/css/blog/blogform.css" rel="stylesheet">
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -27,7 +28,6 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -65,38 +65,16 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-<!-- 	<div class="jumbotron"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<h1><br><br><br>Sign</h1> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-	<section>
-		<div class="container">
-			<div class="row">
-				<main class="col-md-8">
-					<article class="post">
-						<div class="post-head">
-							<div class="post-title">
-								<h1>title</h1>
-							</div>
-							<div class="post-meta">
-								<span class="post-meta">author</span><time>2011/01/01</time>
-							</div>
-						</div>
-						<div>content</div>
-						<div>permalink</div>
-						<footer>tag</footer>
-					</article>
-				</main>
-				<aside class="col-md-4">
-					<div class="widgt">
-						<h4>bbb</h4>
-					</div>
-				</aside>
-			</div>
-		</div>
-	</section>
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<!--     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+	<div class="col-md-8">
+	<form class="form-writeBlog" action="writeBlogDealAction">
+		<label for="inputTitle" class="sr-only">标题</label>
+		<input id="inputTitle" type="text" name="blog.title" class="form-control" placeholder="标题" required>
+		<input type="hidden" name="blog.userid" value="${sessionScope.user.id}">
+		<input type="hidden" name="blog.author" value="${sessionScope.user.username}">
+		<label for="inputContent">正文</label>
+		<textarea id="inputContent" name="blog.content" class="form-control form-writeBlog-content" placeholder="正文" required></textarea>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">发表</button>
+	</form>
+	</div>
 </body>
 </html>

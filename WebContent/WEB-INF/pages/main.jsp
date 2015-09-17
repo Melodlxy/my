@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.lxy.model.Blog"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -74,18 +77,30 @@
 		<div class="container">
 			<div class="row">
 				<main class="col-md-8">
-					<article class="post">
-						<div class="post-head">
-							<div class="post-title">
-								<h1>title</h1>
+					<%
+						List<Blog> blogs = (List<Blog>)session.getAttribute("blogs");
+						if(blogs.size() == 0){
+							%>
+							<h1>您还没有文章，<a href="writeBlogLinkAction">写一篇</a></h1>
+							<%
+							}
+						for(Blog b : blogs){
+					%>
+						<article class="post">
+							<div class="post-head">
+								<div class="post-title">
+									<h1><%=b.getTitle() %></h1>
+								</div>
+								<div class="post-meta">
+									<span class="post-meta">作者：<%=b.getAuthor() %></span><time><%=new SimpleDateFormat("yyyy-mm-dd").format(b.getInputdate()) %></time>
+								</div>
 							</div>
-							<div class="post-meta">
-								<span class="post-meta">author</span><time>2011/01/01</time>
-							</div>
-						</div>
-						<div>content</div>
-						<div>permalink</div>
-						<footer>tag</footer>
+							<div><%=b.getContent() %></div>
+							<div>permalink</div>
+							<footer><%=b.getTag() %></footer>
+						<%
+							}
+						%>
 					</article>
 				</main>
 				<aside class="col-md-4">

@@ -29,7 +29,7 @@
 			<result name="input">/WEB-INF/pages/{1}.jsp</result>
 			<result name="success">/WEB-INF/pages/{1}_success.jsp</result>
 			<result name="error">/WEB-INF/pages/error.jsp</result>
-			
+			<result name="main">/WEB-INF/pages/main.jsp</result>			
 <!-- 			<result name="input">/WEB-INF/pages/login.jsp</result> -->
 <!-- 			<result name="success">/WEB-INF/pages/welcome.jsp</result> -->
 <!-- 			<result name="error">/WEB-INF/pages/error.jsp</result> -->

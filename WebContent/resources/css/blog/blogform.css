@@ -1,0 +1,9 @@
+
+.form-writeBlog{
+	padding: 50px;
+/* 	max-width: 330px; */
+}
+
+textarea.form-writeBlog-content{
+	height: 300px;
+}

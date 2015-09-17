@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.lxy.model.User;
+import com.lxy.service.BlogService;
 import com.lxy.service.MessageService;
 import com.lxy.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -16,7 +17,16 @@ public class LoginDealAction extends ActionSupport{
 	private User user;
 	private UserService us;
 	private MessageService ms;
+	private BlogService bs;
 	private String tip;
+	
+	public BlogService getBs() {
+		return bs;
+	}
+	@Resource(name="blogService")
+	public void setBs(BlogService bs) {
+		this.bs = bs;
+	}
 	
 	public MessageService getMs() {
 		return ms;
@@ -54,8 +64,9 @@ public class LoginDealAction extends ActionSupport{
 	public String login() throws Exception {
 		if(us.vaild(user)){
 			ms.findMessages();
+			bs.findBlogs();
 			setTip("欢迎您,"+user.getUsername());
-			return SUCCESS;
+			return "main";
 		}else{
 			setTip("账户名或密码错误,请重新输入!");
 			return ERROR;
